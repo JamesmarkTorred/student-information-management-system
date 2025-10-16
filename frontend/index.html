@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Student Information Management System (SIMS)
+            </a>
+           
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <!-- Stats Section -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card">
+                    <div class="card-body text-center">
+                        <div class="stats-number" id="total-students">0</div>
+                        <div class="stats-label">Total Students</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card">
+                    <div class="card-body text-center">
+                        <div class="stats-number" id="male-students">0</div>
+                        <div class="stats-label">Male Students</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card">
+                    <div class="card-body text-center">
+                        <div class="stats-number" id="female-students">0</div>
+                        <div class="stats-label">Female Students</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card stats-card">
+                    <div class="card-body text-center">
+                        <div class="stats-number" id="programs-count">0</div>
+                        <div class="stats-label">Programs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Search and Filter Section -->
+        <div class="card filter-section mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-3">
+                    <i class="fas fa-search me-2"></i>Search & Filter Students
+                </h5>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Search Students</label>
+                        <div class="input-group">
+                            <input type="text" id="search-input" class="form-control search-box" 
+                                   placeholder="Search by name, ID, email, program, university...">
+                            <button class="btn btn-primary" type="button" id="search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Program</label>
+                        <select class="form-select" id="program-filter">
+                            <option value="all">All Programs</option>
+                            <option value="" selected disabled>Select Program</option>
+                                <option value="BS Physics">BS Physics</option>
+                                <option value="BS Mathematics">BS Mathematics</option>
+                                <option value="BS Geology">BS Geology</option>
+                                <option value="BS Civil Engineering">BS Civil Engineering</option>
+                                <option value="BS Accountancy">BS Accountancy</option>
+                                <option value="BS Computer Science">BS Computer Science</option>
+                                <option value="BS Forestry">BS Forestry</option>
+                                <option value="BS Electrical Engineering">BS Electrical Engineering</option>
+                                <option value="BS Psychology">BS Psychology</option>
+                                <option value="BS Chemistry">BS Chemistry</option>
+                                <option value="BS Biology">BS Biology</option>
+                                <option value="BS Information Systems">BS Information Systems</option>
+                                <option value="BS Tourism Management">BS Tourism Management</option>
+                                <option value="BS Business Administration">BS Business Administration</option>
+                                <option value="BS Elementary Education">BS Elementary Education</option>
+                                <option value="BS Information Technology">BS Information Technology</option>
+                                <option value="BS Geodetic Engineering">BS Geodetic Engineering</option>
+                                <option value="BS Environmental Science">BS Environmental Science</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" id="gender-filter">
+                            <option value="all">All Genders</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Year Level</label>
+                        <select class="form-select" id="year-level-filter">
+                            <option value="all">All Years</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                            <option value="5th Year">5th Year</option>
+                            <option value="6th Year">6th Year</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">University</label>
+                        <select class="form-select" id="university-filter">
+                            <option value="all">All Universities</option>
+                             <option value="" selected disabled>Select University</option>
+                                <option value="Caraga State University - Main Campus">Caraga State University - Main Campus</option>
+                                <option value="Caraga State University - Cabadbaran Campus">Caraga State University - Cabadbaran Campus</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted" id="filter-info">Use filters to narrow down results</small>
+                           <button class="btn btn-outline-secondary btn-sm" id="clear-filters">
+                            <i class="fas fa-times me-1"></i>Clear Filters
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Students Table -->
+        <div class="card student-table mb-5">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-users me-2"></i>Student Records
+                    <small class="text-muted ms-2" id="table-info"></small>
+                </h5>
+                <div>
+                <button class="btn btn-success btn-sm me-2" id="refresh-btn">
+                    <i class="fas fa-sync-alt me-1"></i>Refresh
+                </button>
+
+                    <span class="student-count">
+                        <span id="display-count">0</span> of <span id="total-count">0</span> students
+                    </span>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Full Name</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+                                <th>Program</th>
+                                <th>Year Level</th>
+                                <th>University</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-table-body">
+                            <!-- Student data will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Student Form -->
+        <div class="card form-container">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-user-plus me-2"></i>Add New Student
+                </h5>
+            </div>
+            <div class="card-body">
+                <form id="student-form">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="student-id" class="form-label">
+                                Student ID <span class="text-danger">*</span>
+                                <small class="text-muted d-block">Enter any unique student identifier</small>
+                            </label>
+                            <input type="text" class="form-control" id="student-id" 
+                                   maxlength="20" 
+                                   required>
+                            <div class="invalid-feedback" id="student-id-feedback">
+                                Please provide a student ID (max 20 characters).
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="full-name" class="form-label">
+                                Full Name <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="full-name" 
+                                   minlength="2" maxlength="100" required>
+                            <div class="invalid-feedback">
+                                Please provide a full name (2-100 characters).
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Gender <span class="text-danger">*</span></label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                                    <label class="form-check-label" for="male">
+                                        <i class="fas fa-mars me-1"></i>Male
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
+                                    <label class="form-check-label" for="female">
+                                        <i class="fas fa-venus me-1"></i>Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please select a gender.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">
+                                Email <span class="text-danger">*</span>
+                                <small class="text-muted d-block">Must be a valid email address</small>
+                            </label>
+                            <input type="email" class="form-control" id="email" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid email address.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="program" class="form-label">Program <span class="text-danger">*</span></label>
+                            <select class="form-select" id="program" required>
+                                <option value="" selected disabled>Select Program</option>
+                                <option value="BS Physics">BS Physics</option>
+                                <option value="BS Mathematics">BS Mathematics</option>
+                                <option value="BS Geology">BS Geology</option>
+                                <option value="BS Civil Engineering">BS Civil Engineering</option>
+                                <option value="BS Accountancy">BS Accountancy</option>
+                                <option value="BS Computer Science">BS Computer Science</option>
+                                <option value="BS Forestry">BS Forestry</option>
+                                <option value="BS Electrical Engineering">BS Electrical Engineering</option>
+                                <option value="BS Psychology">BS Psychology</option>
+                                <option value="BS Chemistry">BS Chemistry</option>
+                                <option value="BS Biology">BS Biology</option>
+                                <option value="BS Information Systems">BS Information Systems</option>
+                                <option value="BS Tourism Management">BS Tourism Management</option>
+                                <option value="BS Business Administration">BS Business Administration</option>
+                                <option value="BS Elementary Education">BS Elementary Education</option>
+                                <option value="BS Information Technology">BS Information Technology</option>
+                                <option value="BS Geodetic Engineering">BS Geodetic Engineering</option>
+                                <option value="BS Environmental Science">BS Environmental Science</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a program.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="year-level" class="form-label">Year Level <span class="text-danger">*</span></label>
+                            <select class="form-select" id="year-level" required>
+                                <option value="" selected disabled>Select Year Level</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                                <option value="5th Year">5th Year</option>
+                                <option value="6th Year">6th Year</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a year level.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="university" class="form-label">
+                            University <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="university" 
+                               minlength="2" maxlength="150" required>
+                        <div class="invalid-feedback">
+                            Please provide a university name.
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Add Student
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" id="success-alert" style="display: none; z-index: 1050;">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-check-circle me-2 fa-lg"></i>
+            <div>
+                <strong>Success!</strong> <span id="success-message">Operation completed successfully.</span>
+            </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" id="error-alert" style="display: none; z-index: 1050;">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-exclamation-circle me-2 fa-lg"></i>
+            <div>
+                <strong>Error!</strong> <span id="error-message">Something went wrong.</span>
+            </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

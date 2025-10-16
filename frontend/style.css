@@ -1,0 +1,189 @@
+:root {
+    --primary-color: #075d28;      /* Office blue */
+    --primary-hover: #226a0c;
+    --secondary-color: #2B2B2B;    /* Dark neutral gray */
+    --success-color: #107C10;      /* Microsoft green */
+    --danger-color: #D13438;       /* Microsoft red */
+    --light-color: #F3F2F1;
+    --dark-color: #323130;
+    --border-color: #E1DFDD;
+}
+
+body {
+    background-color: var(--light-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--dark-color);
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--primary-color) !important;
+    color: white;
+    font-weight: 500;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.navbar-brand:hover {
+    color: #E1DFDD !important;
+}
+
+/* CARD */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 10px 8px rgba(4, 142, 45, 0.08);
+}
+
+/* BUTTONS */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border: none;
+    font-weight: 500;
+}
+
+.btn-danger:hover {
+    background-color: #A4262C;
+}
+
+/* TABLE */
+.student-table {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.student-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #a9e4cd9e;
+}
+
+/* FORM */
+.form-container {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.548);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.15rem rgba(0, 212, 28, 0.25);
+}
+
+/* SEARCH BOX */
+.search-box {
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 4px 0 0 4px;
+}
+
+/* GENDER COLORS */
+.gender-male {
+    color: #024fcc;
+    font-weight: 500;
+}
+
+.gender-female {
+    color: #C239B3; /* MS pink */
+    font-weight: 500;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+    cursor: pointer;
+    color: var(--danger-color);
+    transition: color 0.3s, background-color 0.3s;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.delete-btn:hover {
+    color: #A4262C;
+    background-color: #F8F8F8;
+}
+
+/* ALERTS */
+.alert {
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+/* STATS CARD */
+.stats-card {
+    text-align: center;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color) !important;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.stats-number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.stats-label {
+    font-size: 0.85rem;
+    color: var(--dark-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* VALIDATION */
+.invalid-feedback {
+    display: none;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.was-validated .form-select:invalid ~ .invalid-feedback {
+    display: block;
+}
+
+/* LOADING SPINNER */
+.loading-spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
