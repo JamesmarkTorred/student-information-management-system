@@ -192,8 +192,8 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
-    console.log(`📊 Student Management System`);
-    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    console.log(`📊 Student Management System API available at http://localhost:${PORT}/api/students`);
+    console.log(`❤️  Health check: http://localhost:${PORT}/api/health`);
     console.log(`📁 Data path: ${dataPath}`);
 });
